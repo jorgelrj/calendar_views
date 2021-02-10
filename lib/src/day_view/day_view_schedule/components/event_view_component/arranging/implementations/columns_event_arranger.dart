@@ -44,14 +44,14 @@ void _sortEvents(List<StartDurationItem> events) {
 }
 
 List<_Column> _makeColumns(List<StartDurationItem> events) {
-  List<_Column> columns = new List();
+  List<_Column> columns = [];
 
   columns.add(
-    new _Column(),
+    _Column(),
   );
 
   for (StartDurationItem event in events) {
-    _Reservation reservation = new _Reservation(event);
+    _Reservation reservation = _Reservation(event);
 
     bool foundColumn = false;
     for (_Column column in columns) {
@@ -62,10 +62,10 @@ List<_Column> _makeColumns(List<StartDurationItem> events) {
       }
     }
 
-    // event could not be placed in any of the columns, so create new column and add event into it
+    // event could not be placed in any of the columns, so create  column and add event into it
     if (!foundColumn) {
       columns.add(
-        new _Column(),
+        _Column(),
       );
       columns.last.addReservation(reservation);
     }
@@ -79,7 +79,7 @@ List<ArrangedEvent> _columnsToArrangedEvents({
   @required ArrangerConstraints constraints,
   @required bool extendColumns,
 }) {
-  int determineWidthInColumns(int columnNumber, _Reservation reservation) {
+  int determiidthInColumns(int columnNumber, _Reservation reservation) {
     int widthInColumns = 1;
 
     if (extendColumns) {
@@ -105,13 +105,13 @@ List<ArrangedEvent> _columnsToArrangedEvents({
     _Column column = columns[columnNumber];
 
     for (_Reservation reservationInColumn in column.reservations) {
-      int widthInColumns = determineWidthInColumns(
+      int widthInColumns = determiidthInColumns(
         columnNumber,
         reservationInColumn,
       );
 
       arrangedEvents.add(
-        new ArrangedEvent(
+        ArrangedEvent(
           top: constraints.minuteOfDayFromTop(
             reservationInColumn.event.startMinuteOfDay,
           ),
@@ -142,7 +142,7 @@ class _Reservation {
 }
 
 class _Column {
-  List<_Reservation> reservations = new List();
+  List<_Reservation> reservations = [];
 
   bool isReservationAvailable(_Reservation reservation) {
     for (_Reservation alreadyPlacedReservation in reservations) {

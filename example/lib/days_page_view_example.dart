@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Page;
 import 'package:meta/meta.dart';
 
 import 'package:calendar_views/days_page_view.dart';
@@ -9,7 +9,7 @@ import 'utils/all.dart';
 
 class DaysPageViewExample extends StatefulWidget {
   @override
-  _DaysPageViewExampleState createState() => new _DaysPageViewExampleState();
+  _DaysPageViewExampleState createState() => _DaysPageViewExampleState();
 }
 
 class _DaysPageViewExampleState extends State<DaysPageViewExample> {
@@ -38,19 +38,19 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
     }
 
     _isInitialisingDaysPageController = true;
-    await new Future.delayed(Duration.zero);
+    await Future.delayed(Duration.zero);
 
     await showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => new _DaysPageControllerInitialisationDialog(
-            onConfirm: (controller) {
-              Navigator.of(context).pop();
-              setState(() {
-                _daysPageController = controller;
-              });
-            },
-          ),
+      builder: (context) => _DaysPageControllerInitialisationDialog(
+        onConfirm: (controller) {
+          Navigator.of(context).pop();
+          setState(() {
+            _daysPageController = controller;
+          });
+        },
+      ),
     );
 
     setState(() {
@@ -64,18 +64,18 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
       _startInitialisationOfDaysPageController();
     }
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("DaysPageView Example"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("DaysPageView Example"),
       ),
-      body: new Column(
+      body: Column(
         children: <Widget>[
-          new Expanded(
-            child: new Container(
+          Expanded(
+            child: Container(
               color: Colors.green[200],
               child: _daysPageController == null
                   ? null
-                  : new DaysPageView(
+                  : DaysPageView(
                       scrollDirection: _scrollDirection,
                       pageSnapping: _pageSnapping,
                       reverse: _reverse,
@@ -84,40 +84,40 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
                     ),
             ),
           ),
-          new Expanded(
-            child: new SingleChildScrollView(
-              child: new Column(
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: <Widget>[
-                  new ListTile(
-                    title: new Center(
-                      child: new Text(
+                  ListTile(
+                    title: Center(
+                      child: Text(
                         "DaysPerPage: ${_daysPageController?.daysPerPage ?? ""}",
                       ),
                     ),
                   ),
-                  new Divider(height: 0.0),
-                  new Container(
-                    padding: new EdgeInsets.all(4.0),
-                    child: new Center(
-                      child: new RaisedButton(
-                        child: new Text("Jump To Today"),
+                  Divider(height: 0.0),
+                  Container(
+                    padding: EdgeInsets.all(4.0),
+                    child: Center(
+                      child: ElevatedButton(
+                        child: Text("Jump To Today"),
                         onPressed: () {
-                          _daysPageController.jumpToDay(new DateTime.now());
+                          _daysPageController.jumpToDay(DateTime.now());
                         },
                       ),
                     ),
                   ),
-                  new Divider(height: 0.0),
-                  new ListTile(
-                    title: new Text("Scroll Direction"),
-                    trailing: new DropdownButton<Axis>(
+                  Divider(height: 0.0),
+                  ListTile(
+                    title: Text("Scroll Direction"),
+                    trailing: DropdownButton<Axis>(
                       value: _scrollDirection,
                       items: <Axis>[Axis.horizontal, Axis.vertical]
                           .map(
-                            (axis) => new DropdownMenuItem<Axis>(
-                                  value: axis,
-                                  child: new Text("${axisToString(axis)}"),
-                                ),
+                            (axis) => DropdownMenuItem<Axis>(
+                              value: axis,
+                              child: Text("${axisToString(axis)}"),
+                            ),
                           )
                           .toList(),
                       onChanged: (Axis value) {
@@ -131,9 +131,9 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
                       },
                     ),
                   ),
-                  new Divider(height: 0.0),
-                  new CheckboxListTile(
-                    title: new Text("Page Snapping"),
+                  Divider(height: 0.0),
+                  CheckboxListTile(
+                    title: Text("Page Snapping"),
                     value: _pageSnapping,
                     onChanged: (value) {
                       setState(() {
@@ -141,9 +141,9 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
                       });
                     },
                   ),
-                  new Divider(height: 0.0),
-                  new CheckboxListTile(
-                    title: new Text("Reverse"),
+                  Divider(height: 0.0),
+                  CheckboxListTile(
+                    title: Text("Reverse"),
                     value: _reverse,
                     onChanged: (value) {
                       setState(() {
@@ -161,9 +161,7 @@ class _DaysPageViewExampleState extends State<DaysPageViewExample> {
   }
 
   Widget _daysPageBuilder(BuildContext context, List<DateTime> days) {
-    return new Page.forDays(
-      days: days,
-    );
+    return Page.forDays(days: days);
   }
 }
 
@@ -175,7 +173,7 @@ class _DaysPageControllerInitialisationDialog extends StatefulWidget {
   final ValueChanged<DaysPageController> onConfirm;
 
   @override
-  State createState() => new _DaysPageControllerInitialisationDialogState();
+  State createState() => _DaysPageControllerInitialisationDialogState();
 }
 
 class _DaysPageControllerInitialisationDialogState
@@ -187,51 +185,51 @@ class _DaysPageControllerInitialisationDialogState
   void initState() {
     super.initState();
 
-    _firstDayOfInitialPage = new DateTime.now();
+    _firstDayOfInitialPage = DateTime.now();
     _daysPerPage = DateTime.daysPerWeek;
   }
 
   Future<void> _changeFirstDayOfInitialPage() async {
-    DateTime newFirstDayOfInitialPage = await showDatePicker(
+    DateTime firstDayOfInitialPage = await showDatePicker(
       context: context,
       initialDate: _firstDayOfInitialPage,
-      firstDate: new DateTime(2000),
-      lastDate: new DateTime(2100),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
     );
 
-    if (newFirstDayOfInitialPage == null) {
+    if (firstDayOfInitialPage == null) {
       return;
     }
 
     setState(() {
-      _firstDayOfInitialPage = newFirstDayOfInitialPage;
+      _firstDayOfInitialPage = firstDayOfInitialPage;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
-      title: new Text("DaysPageController initialisation"),
-      content: new SingleChildScrollView(
-        child: new Column(
+    return AlertDialog(
+      title: Text("DaysPageController initialisation"),
+      content: SingleChildScrollView(
+        child: Column(
           children: <Widget>[
-            new ListTile(
-              title: new Text("First Day Of Initial Page"),
-              trailing: new RaisedButton(
-                child: new Text("${dateToString(_firstDayOfInitialPage)}"),
+            ListTile(
+              title: Text("First Day Of Initial Page"),
+              trailing: ElevatedButton(
+                child: Text("${dateToString(_firstDayOfInitialPage)}"),
                 onPressed: () {
                   _changeFirstDayOfInitialPage();
                 },
               ),
             ),
-            new Divider(height: 0.0),
-            new ListTile(
-              title: new Text("Days Per Page"),
-              trailing: new Row(
+            Divider(height: 0.0),
+            ListTile(
+              title: Text("Days Per Page"),
+              trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  new IconButton(
-                    icon: new Icon(Icons.remove_circle_outline),
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_outline),
                     onPressed: _daysPerPage > 1
                         ? () {
                             setState(() {
@@ -240,9 +238,9 @@ class _DaysPageControllerInitialisationDialogState
                           }
                         : null,
                   ),
-                  new Text("$_daysPerPage"),
-                  new IconButton(
-                    icon: new Icon(Icons.add_circle_outline),
+                  Text("$_daysPerPage"),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_outline),
                     onPressed: () {
                       setState(() {
                         _daysPerPage++;
@@ -252,16 +250,16 @@ class _DaysPageControllerInitialisationDialogState
                 ],
               ),
             ),
-            new Divider(height: 0.0),
+            Divider(height: 0.0),
           ],
         ),
       ),
       actions: <Widget>[
-        new FlatButton(
-          child: new Text("OK"),
+        TextButton(
+          child: Text("OK"),
           onPressed: () {
             widget.onConfirm(
-              new DaysPageController(
+              DaysPageController(
                 firstDayOnInitialPage: _firstDayOfInitialPage,
                 daysPerPage: _daysPerPage,
               ),

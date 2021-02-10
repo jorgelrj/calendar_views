@@ -12,7 +12,7 @@ class ChainsEventArranger implements EventViewArranger {
     Iterable<StartDurationItem> events,
     ArrangerConstraints constraints,
   ) {
-    // creates a new list with sortedEvents
+    // creates a  list with sortedEvents
     List<StartDurationItem> sortedEvents = <StartDurationItem>[];
     sortedEvents.addAll(events);
     _sortEvents(sortedEvents);
@@ -44,13 +44,13 @@ class ChainsEventArranger implements EventViewArranger {
     // converts items to [ArrangedEvent]s
     return items
         .map(
-          (item) => new ArrangedEvent(
-                top: constraints.minuteOfDayFromTop(item.start),
-                left: item.leftPercentage * constraints.areaWidth,
-                width: item.widthPercentage * constraints.areaWidth,
-                height: constraints.heightOfDuration(item.duration),
-                event: item.event,
-              ),
+          (item) => ArrangedEvent(
+            top: constraints.minuteOfDayFromTop(item.start),
+            left: item.leftPercentage * constraints.areaWidth,
+            width: item.widthPercentage * constraints.areaWidth,
+            height: constraints.heightOfDuration(item.duration),
+            event: item.event,
+          ),
         )
         .toList();
   }
@@ -74,7 +74,7 @@ List<_Item> _makeItems(List<StartDurationItem> events) {
 
   for (int i = 0; i < events.length; i++) {
     items.add(
-      new _Item(
+      _Item(
         id: i,
         event: events[i],
       ),

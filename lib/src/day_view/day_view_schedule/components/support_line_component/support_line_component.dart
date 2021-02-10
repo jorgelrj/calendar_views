@@ -33,7 +33,7 @@ class SupportLineComponent implements ScheduleComponent {
   }) {
     assert(supportLines != null);
 
-    return new SupportLineComponent._internal(
+    return SupportLineComponent._internal(
       extendOverStartMainArea: extendOverStartMainArea,
       extendOverEndMainArea: extendOverEndMainArea,
       supportLines: supportLines,
@@ -53,7 +53,7 @@ class SupportLineComponent implements ScheduleComponent {
     assert(interval != null && interval > 0);
     assert(generatedSupportLineBuilder != null);
 
-    return new SupportLineComponent._internal(
+    return SupportLineComponent._internal(
       extendOverStartMainArea: extendOverStartMainArea,
       extendOverEndMainArea: extendOverEndMainArea,
       minuteOfDayOfFirstSupportLine: minuteOfDayOfFirstSupportLine,
@@ -95,7 +95,7 @@ class SupportLineComponent implements ScheduleComponent {
       left = positioner.startMainAreaRight;
     }
 
-    return new ItemPosition(
+    return ItemPosition(
       top: positioner.minuteOfDayFromTop(minuteOfDay),
       left: left,
     );

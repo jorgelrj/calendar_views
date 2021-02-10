@@ -58,7 +58,7 @@ class EventViewComponent implements ScheduleComponent {
     @required Iterable<StartDurationItem> events,
     @required SchedulePositioner positioner,
   }) {
-    DayBuilder dayBuilder = new DayBuilder(
+    DayBuilder dayBuilder = DayBuilder(
       context: context,
       dayNumber: dayNumber,
       events: events,

@@ -23,7 +23,7 @@ class MonthPageView extends CalendarPageView {
     MonthPageController controller,
     @required this.pageBuilder,
     this.onMonthChanged,
-  })  : this.controller = controller ?? new MonthPageController(),
+  })  : this.controller = controller ?? MonthPageController(),
         assert(controller != null),
         assert(pageBuilder != null),
         super(
@@ -45,7 +45,7 @@ class MonthPageView extends CalendarPageView {
   final ValueChanged<DateTime> onMonthChanged;
 
   @override
-  CalendarPageViewState createState() => new _MonthPageViewState();
+  CalendarPageViewState createState() => _MonthPageViewState();
 }
 
 class _MonthPageViewState extends CalendarPageViewState<MonthPageView> {
@@ -55,8 +55,8 @@ class _MonthPageViewState extends CalendarPageViewState<MonthPageView> {
   void initState() {
     super.initState();
 
-    Month initialMonth = new Month.fromDateTime(widget.controller.initialMonth);
-    _pageMonth = new PageMonth(
+    Month initialMonth = Month.fromDateTime(widget.controller.initialMonth);
+    _pageMonth = PageMonth(
       initialPage: CalendarPageViewState.initial_page,
       initialMonth: initialMonth,
     );
@@ -81,7 +81,7 @@ class _MonthPageViewState extends CalendarPageViewState<MonthPageView> {
   }
 
   MonthPageLink _createMonthPageLink() {
-    return new MonthPageLink(
+    return MonthPageLink(
       currentMonth: _getCurrentMonth,
       jumpToMonth: _jumpToMonth,
       animateToMonth: _animateToMonth,
@@ -99,7 +99,7 @@ class _MonthPageViewState extends CalendarPageViewState<MonthPageView> {
   }
 
   void _jumpToMonth(DateTime month) {
-    Month m = new Month.fromDateTime(month);
+    Month m = Month.fromDateTime(month);
     int page = _pageMonth.pageOfMonth(m);
 
     jumpToPage(page);
@@ -110,7 +110,7 @@ class _MonthPageViewState extends CalendarPageViewState<MonthPageView> {
     @required Duration duration,
     @required Curve curve,
   }) {
-    Month m = new Month.fromDateTime(month);
+    Month m = Month.fromDateTime(month);
     int page = _pageMonth.pageOfMonth(m);
 
     return animateToPage(

@@ -84,7 +84,7 @@ class MonthViewDaysGenerator {
   }
 
   DayOfMonth _dateToDayOfMonth(Date date) {
-    return new DayOfMonth(
+    return DayOfMonth(
       day: date.toDateTime(),
       month: month.toDateTime(),
     );

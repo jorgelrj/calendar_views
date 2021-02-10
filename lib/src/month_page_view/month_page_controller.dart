@@ -10,12 +10,12 @@ import 'month_page_view.dart';
 
 /// Controller for [MonthPageView].
 class MonthPageController extends CalendarPageController {
-  /// Creates a new [MonthPageController].
+  /// Creates a  [MonthPageController].
   ///
   /// If [initialMonth] is null, it is set to whatever month is today.
   MonthPageController({
     DateTime initialMonth,
-  })  : this.initialMonth = initialMonth ?? new DateTime.now(),
+  })  : this.initialMonth = initialMonth ?? DateTime.now(),
         assert(initialMonth != null);
 
   /// Month to display when first creating [MonthPageView].
@@ -28,7 +28,7 @@ class MonthPageController extends CalendarPageController {
 
   /// Attaches an item to this controller.
   ///
-  /// If a previous item is attached it is replaced with the new one.
+  /// If a previous item is attached it is replaced with the  one.
   void attach(MonthPageLink link) {
     _attachedItem = link;
   }

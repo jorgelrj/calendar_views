@@ -42,7 +42,7 @@ class DaySeparationComponent implements ScheduleComponent {
       top = positioner.topExtensionHeight;
     }
 
-    return new ItemPosition(
+    return ItemPosition(
       top: top,
       left: positioner.daySeparationAreaLeft(daySeparatorNumber),
     );
@@ -60,7 +60,7 @@ class DaySeparationComponent implements ScheduleComponent {
       height -= positioner.bottomExtensionHeight;
     }
 
-    return new ItemSize(
+    return ItemSize(
       width: positioner.daySeparationAreaWidth(daySeparatorNumber),
       height: height,
     );

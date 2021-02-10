@@ -39,7 +39,7 @@ class DayBuilder {
   }
 
   ArrangerConstraints _makeArrangerConstraints() {
-    return new ArrangerConstraints(
+    return ArrangerConstraints(
       areaWidth: positioner.dayAreaWidth(dayNumber),
       areaHeight: positioner.totalHeight,
       minuteOfDayFromTop: positioner.minuteOfDayFromTop,
@@ -60,14 +60,14 @@ class DayBuilder {
   }
 
   ItemPosition _makeItemPosition(ArrangedEvent arrangedEvent) {
-    return new ItemPosition(
+    return ItemPosition(
       top: arrangedEvent.top,
       left: positioner.dayAreaLeft(dayNumber) + arrangedEvent.left,
     );
   }
 
   ItemSize _makeItemSize(ArrangedEvent arrangedEvent) {
-    return new ItemSize(
+    return ItemSize(
       width: arrangedEvent.width,
       height: arrangedEvent.height,
     );

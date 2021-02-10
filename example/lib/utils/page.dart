@@ -19,7 +19,7 @@ class Page extends StatefulWidget {
   final List<DateTime> days;
 
   @override
-  _PageState createState() => new _PageState();
+  _PageState createState() => _PageState();
 }
 
 class _PageState extends State<Page> with AutomaticKeepAliveClientMixin<Page> {
@@ -47,14 +47,14 @@ class _PageState extends State<Page> with AutomaticKeepAliveClientMixin<Page> {
   Widget build(BuildContext context) {
     super.build(context);
 
-    return new Container(
-      constraints: new BoxConstraints.expand(),
-      padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: new Column(
+    return Container(
+      constraints: BoxConstraints.expand(),
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Column(
         children: <Widget>[
-          new Container(
-            padding: new EdgeInsets.all(4.0),
-            child: new Checkbox(
+          Container(
+            padding: EdgeInsets.all(4.0),
+            child: Checkbox(
                 value: _isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -62,11 +62,11 @@ class _PageState extends State<Page> with AutomaticKeepAliveClientMixin<Page> {
                   });
                 }),
           ),
-          new Expanded(
-            child: new SingleChildScrollView(
-              child: new Column(
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: widget.days
-                    .map((day) => new Text(_makeTextString(day)))
+                    .map((day) => Text(_makeTextString(day)))
                     .toList(),
               ),
             ),
