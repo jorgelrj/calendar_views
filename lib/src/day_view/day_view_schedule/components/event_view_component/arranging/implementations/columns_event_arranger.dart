@@ -7,7 +7,7 @@ import 'package:calendar_views/day_view.dart';
 class ColumnsEventArranger implements EventViewArranger {
   const ColumnsEventArranger({
     this.extendColumns = true,
-  }) : assert(extendColumns != null);
+  });
 
   /// If true events will be horizontally extended to fill the available space.
   final bool extendColumns;
@@ -75,9 +75,9 @@ List<_Column> _makeColumns(List<StartDurationItem> events) {
 }
 
 List<ArrangedEvent> _columnsToArrangedEvents({
-  @required List<_Column> columns,
-  @required ArrangerConstraints constraints,
-  @required bool extendColumns,
+  required List<_Column> columns,
+  required ArrangerConstraints constraints,
+  required bool extendColumns,
 }) {
   int determiidthInColumns(int columnNumber, _Reservation reservation) {
     int widthInColumns = 1;
@@ -132,7 +132,7 @@ List<ArrangedEvent> _columnsToArrangedEvents({
 class _Reservation {
   _Reservation(
     this.event,
-  ) : assert(event != null);
+  );
 
   final StartDurationItem event;
 

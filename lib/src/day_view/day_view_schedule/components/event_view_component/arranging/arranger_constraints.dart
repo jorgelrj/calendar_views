@@ -6,14 +6,12 @@ import 'package:calendar_views/day_view.dart';
 @immutable
 class ArrangerConstraints {
   ArrangerConstraints({
-    @required this.areaWidth,
-    @required this.areaHeight,
-    @required this.minuteOfDayFromTop,
-    @required this.heightOfDuration,
-  })  : assert(areaWidth != null && areaWidth >= 0),
-        assert(areaHeight != null && areaHeight >= 0),
-        assert(minuteOfDayFromTop != null),
-        assert(heightOfDuration != null);
+    required this.areaWidth,
+    required this.areaHeight,
+    required this.minuteOfDayFromTop,
+    required this.heightOfDuration,
+  })   : assert(areaWidth >= 0),
+        assert(areaHeight >= 0);
 
   /// Width of the area inside of which events should be arranged.
   final double areaWidth;
